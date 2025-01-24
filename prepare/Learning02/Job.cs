@@ -2,8 +2,8 @@ using System;
 
 public class Job
 {
-    public string _company = "";
-    public string _jobTitle = "";
+    public string _company;
+    public string _jobTitle;
     public int _startYear; //not yet assigned a value, but told it is meant to be an int... I do not know if this fully works.
     public int _endYear;
 
