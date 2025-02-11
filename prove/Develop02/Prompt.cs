@@ -5,7 +5,6 @@ public class Prompt
     //Create list, public if I want it to be able to be changed and accessed by others. Not necessary yet, but could be useful potentially.
     List<string> prompts =
     [
-        //add elements format listname.Add(item);
         "What is the best thing you ate today?",
         "What is a strange thing that happened to you recently?",
         "What is something cool you experienced",
