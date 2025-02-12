@@ -1,5 +1,5 @@
 using System;
-
+using System.IO; //used to write text to a new file
 public class Menu
 {
     //create working memory to store entries.
@@ -80,8 +80,45 @@ public class Menu
         return menuChoice;
     }
 
-    public void MenuAction()
+    public void MenuAction(string menuChoice)
     {
-        
+        if (menuChoice == "1")
+        {
+            //write - call the entry class and functions, returning the value to be appended to _workingMemory.
+            //need to ensure it is in csv format. Thinking ~~ double tilde is good to show new entry is starting.
+        }
+        else if (menuChoice == "2")
+        {
+            //display 
+            Console.WriteLine($"{_workingMemory}");
+        }
+        else if (menuChoice == "3")
+        {
+            //load + warning if user is loading a file after writing and not yet saving
+            //open a file csv and copy its contents into working memory, replacing what is currently there.
+            Console.WriteLine("Warning: Opening a new file will replace any unsaved entries.");
+
+        }
+        else if (menuChoice == "4")
+        {
+            //save
+            //ask for file location, then append working memory to that location
+            Console.WriteLine("Where would you like to save the current project?");
+            _storageLocation = Console.ReadLine();
+        }
+        else if (menuChoice == "5")
+        {
+            //quit
+            //break out of loop from program.cs
+
+        }
+        else if (menuChoice == "0")
+        {
+            Console.WriteLine("There appears to be a problem with what was entered or interpreted. Please try again.");
+        }
+        else
+        {
+            Console.WriteLine("Unexpected error.");
+        }
     }
 }
