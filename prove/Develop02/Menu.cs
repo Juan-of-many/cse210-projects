@@ -85,7 +85,8 @@ public class Menu
         if (menuChoice == "1")
         {
             //write - call the entry class and functions, returning the value to be appended to _workingMemory.
-            //need to ensure it is in csv format. Thinking ~~ double tilde is good to show new entry is starting.
+            //it is in csv format. ~~ double tilde is to show new entry is starting.
+            Entry entryInstance = new Entry();
         }
         else if (menuChoice == "2")
         {
