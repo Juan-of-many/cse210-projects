@@ -38,7 +38,7 @@ public class Entry
         _date = GetDateTime();
         _prompt = GetPrompt();
         _userResponse = GetResponse(_prompt);
-GetDateTime 
+
         _entry = $"~~{_date}: {_prompt}{Environment.NewLine}{_userResponse}{Environment.NewLine}";
         return _entry;
     }
