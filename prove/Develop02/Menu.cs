@@ -34,6 +34,7 @@ public class Menu
     //each index number 0-4 refers to 1-5 of Write to Quit.
     public void DisplayMenu()
     {
+        Console.WriteLine("Please select one of the following choices:");
         Console.WriteLine($"{_menuOptions[0]}");
         Console.WriteLine($"{_menuOptions[1]}");
         Console.WriteLine($"{_menuOptions[2]}");
@@ -116,16 +117,12 @@ public class Menu
 
                 //emptying working memory before the foreach loop.
                 _workingMemory = "";
-                int i = 0;
 
                 string[] lines = System.IO.File.ReadAllLines(filename);
-                foreach (string line in lines)
+                foreach (string line in lines) //I think going line by line when I have newline instances between the prompt and answer may have caused problems with this iterating line by line?
                 {
-                    string[] parts = line.Split("~~");//separate the csv at the designated position of wherever it finds ~~
-
-                    _workingMemory = $"{_workingMemory}~~{parts[i]}"; //unsure if I need to add to the end --> {Environment.NewLine}
-                    ++i; //increment by 1
-                }
+                    _workingMemory = $"{_workingMemory}{Environment.NewLine}{line}";
+                }//I struggled to separate the values by the tildes when there was a new line break. The above line by line product succeeded at filling the working memory string with the correctly formatted data.
             }
         }
         else if (menuChoice == "4")

@@ -39,7 +39,7 @@ public class Entry
         _prompt = GetPrompt();
         _userResponse = GetResponse(_prompt);
 
-        _entry = $"~~{_date}: {_prompt}{Environment.NewLine}{_userResponse}{Environment.NewLine}";
+        _entry = $"~~ Date: {_date} - Prompt: {_prompt}{Environment.NewLine}{_userResponse}{Environment.NewLine}";
         return _entry;
     }
 }

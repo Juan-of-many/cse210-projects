@@ -27,10 +27,5 @@ class Program
             }
         } while (play == "yes");
         
-
-
-
-
-
     }
 }
