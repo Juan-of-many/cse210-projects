@@ -70,20 +70,28 @@ public class Scripture
        int length = _textIndex.Count;
        int scope = length - 1; //needed because indexes start at 0.
 
-        //call random to find target by position in remaining words.
-        int targetIndex = GenerateRandom(scope);
+        //if there are one or two words remaining and I ask it to remove 3 words, it will raise an error as _textIndex will be empty. 
+        //I need it to not do anything if _textIndex is empty. length = _textIndex.Count.
+        //So I need it to skip all removal steps if length is 0 or less.
+        if (length > 0)
+        {
+            //call random to find target by position in remaining words.
+            int targetIndex = GenerateRandom(scope);
         
-        //compare that position with remaining words
-        int assassin = _textIndex[targetIndex];
+            //compare that position with remaining words
+            int assassin = _textIndex[targetIndex];
 
-        //talk to Word.cs, change targetted word out for ___. This follows encapsulation rules because of the way it pokes the Word.cs file. 
-        //If ___ was deemed unsuitable and someone wanted to change the word to anything else, it will still function, as this checks if it has been changed, not what it has been changed to.
-        Word wordInstance = new Word();
-        _words[assassin] = wordInstance.Replace();
+            //talk to Word.cs, change targetted word out for ___. This follows encapsulation rules because of the way it pokes the Word.cs file. 
+            //If ___ was deemed unsuitable and someone wanted to change the word to anything else, it will still function, as this checks if it has been changed, not what it has been changed to.
+            Word wordInstance = new Word();
+            _words[assassin] = wordInstance.Replace();
         
-        //remove that chosen option from future possibilities
-        _textIndex.RemoveAt(targetIndex);
-        //I shouldn't need to set _textIndex = _textIndex to tell it it has had an item removed.
+            //remove that chosen option from future possibilities
+            _textIndex.RemoveAt(targetIndex);
+            //I shouldn't need to set _textIndex = _textIndex to tell it it has had an item removed.
+        }
+        //else, break. I can let it run the remaining two or one times, fail to meet the conditions of if, doing nothing but incrementing by 1.
+        //It will finish the loop on its own.
     }
 
     public int GenerateRandom(int scope)
