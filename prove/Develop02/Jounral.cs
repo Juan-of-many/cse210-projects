@@ -1,6 +1,6 @@
 using System;
 using System.IO; //used to write text to a new file
-public class Menu
+public class Journal
 {
     //create working memory to store entries.
     public string _workingMemory; //don't need to assign = "" as default value.
@@ -48,7 +48,7 @@ public class Menu
         //It is set here to exist as an empty variable to be filled below.
         string menuChoice;
 
-        Console.Write("What would you like to do?");
+        Console.Write("What would you like to do? ");
         string userMenuChoice = Console.ReadLine();
 
         //attempting to change user's answer to lower-case. I hope an answer including numbers doesn't create problems.
@@ -84,7 +84,7 @@ public class Menu
         return menuChoice;
     }
 
-    public void MenuAction(string menuChoice)
+    public void JournalAction(string menuChoice)
     {
         if (menuChoice == "1")
         {

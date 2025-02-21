@@ -9,16 +9,16 @@ class Program
 
         //Working memory is established at this point. We need to not reset it every time a new action is chosen. Thus, it needs to be created outside the loop?
         //don't want multiple instances of Menu during one running of the loop over and over.
-        Menu menuInstance = new Menu();
-        menuInstance.AssembleMenu();
+        Journal journalInstance = new Journal();
+        journalInstance.AssembleMenu();
 
         do
         {
-            menuInstance.DisplayMenu();
+            journalInstance.DisplayMenu();
             
             //get the choice and place it through the menu to take the corresponding action.
-            string choice = menuInstance.GetUserChoice();
-            menuInstance.MenuAction(choice);
+            string choice = journalInstance.GetUserChoice();
+            journalInstance.JournalAction(choice);
 
             //if choice is quit option, #5, this if statement acts as my break.
             if (choice == "5")
