@@ -29,10 +29,14 @@ public class Activity
         string rawDuration = Console.ReadLine();
         _duration = Int32.Parse(rawDuration);
     }
-
-    public void SetTimeSpent()
+    public int GetDuration()
     {
-        _timeSpent = 0;
+        return _duration;
+    }
+
+    public void SetTimeSpent(int value)
+    {
+        _timeSpent = value;
     }
 
     public void TrackTimeSpent(int time)
