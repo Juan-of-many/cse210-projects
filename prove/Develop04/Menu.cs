@@ -30,14 +30,14 @@ class Menu
         foreach (string item in _menuOptions)
         {   
             i++;
-            Console.Write($"  {i}. {item}");
+            Console.WriteLine($"  {i}. {item}");
 
         }
         //last option is quit
         //all options are indented by two spaces
 
         //ask for user input
-        Console.WriteLine("Select a choice from the menu: ");
+        Console.Write("Select a choice from the menu: ");
         _userChoice = Console.ReadLine();
     }
     
@@ -79,7 +79,7 @@ class Menu
         {   
             //user entered something wrong or error
             Console.WriteLine("Please try entering something different.");
-            Console.WriteLine("Press enter when you are ready to continue: ");
+            Console.Write("Press enter when you are ready to continue: ");
             Console.ReadLine();
 
             //this is a way to create a loop until a valid choice is chosen.

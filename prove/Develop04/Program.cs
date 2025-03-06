@@ -24,22 +24,22 @@ class Program
             if (choiceIndex == 0)
             {
                 BreathingActivity breathing = new BreathingActivity();
-                RunActivity();
+                breathing.AssembleInstructions();
             }
             else if (choiceIndex == 1)
             {
                 CountdownActivity counting = new CountdownActivity();
-                RunActivity();
+                counting.AssembleInstructions();
             }
             else if (choiceIndex == 2)
             {
                 ListingActivity listing = new ListingActivity();
-                RunActivity();
+                listing.AssembleInstructions();
             }
             else if (choiceIndex == 3)
             {
                 ReflectingActivity reflecting = new ReflectingActivity();
-                RunActivity();
+                reflecting.AssembleInstructions();
             }
             else if (choiceIndex == 4)
             {
@@ -53,5 +53,7 @@ class Program
                 run = false;
             }
         }
+
+        Console.WriteLine("Thank you! Have a great time!");
     }
 }
