@@ -1,14 +1,17 @@
 using System;
+using System.Runtime;
 class Menu
 {
     private int _userChoice;
     private List<string> _menuOptions;
-    private List<string> _workingMemory;
+    List<string> _workingMemory;
+    List<string> _profile;
 
     public Menu()
     {
-       _menuOptions = 
-       [
+        _workingMemory = [];
+        _menuOptions = 
+        [
             "Create new goal",
             "Save Profile",
             "Load Profile",
@@ -17,7 +20,7 @@ class Menu
             "Experience Progress",
             "Notifications",
             "Quit"
-       ];
+        ];
     }
 
     public void DisplayMenu()
@@ -87,6 +90,161 @@ class Menu
         }
     }
 
+    public void MenuAction()
+    {
+        //initialize
+        Game game = new Game();
+
+        if (_userChoice == 1)
+        {   
+            //create new goal
+            Console.WriteLine();
+            Console.WriteLine("Here are your choices: ");
+                
+            //iterate through each, assigning a number to each item one greater than their number
+            List<string> goalOptions = ["Simple Goal", "Eternal Goal", "Checklist Goal"];
+            int i = 0;
+            foreach (string item in goalOptions)
+            {   
+                i++;
+                Console.WriteLine($"  {i}. {item}");
+            }
+            
+            Console.WriteLine("What kind of goal would you like to create?");
+            string rawResponse = Console.ReadLine();
+            string goalResponse = rawResponse.ToLower();
+
+            if (goalResponse == "1" || goalResponse == "s" || goalResponse == "simple goal" || goalResponse == "simple" || goalResponse == "simpel")
+            {
+                SimpleGoal simple = new SimpleGoal();
+                string type = "simple";
+                string title = simple.GetTitle();
+                string description = simple.GetDescription();
+                int rawPoints = simple.GetPoints();
+                string points = rawPoints.ToString();
+                
+                string completion;
+                bool completed = simple.GetComplete();
+                if (completed == true)
+                {
+                    completion = "true";
+                }
+                else
+                {
+                    completion = "false";
+                }
+
+                string dataset = $"{type} {title} {description} {points} {completion}";
+                _workingMemory.Add(dataset);
+            }
+            else if (goalResponse == "2" || goalResponse == "e" || goalResponse == "eternal goal" || goalResponse == "eternal")
+            {
+                EternalGoal eternal = new EternalGoal();
+                string title = eternal.GetTitle();
+                
+            }
+            else if (goalResponse == "3" || goalResponse == "c" || goalResponse == "checklist goal" || goalResponse == "checklist" || goalResponse == "check")
+            {
+                ChecklistGoal checklist = new ChecklistGoal();
+                string title = checklist.GetTitle();
+                
+            }
+            else
+            {
+                //invalid option selected
+                Console.WriteLine("Invalid option selected. Consider using the matching number or first letter of your desired option.");
+            }
+        }
+        else if (_userChoice == 2)
+        {
+            //save profile
+            //ask for file location, then create new file with that name/location containing working memory.
+            Console.WriteLine("What filename you would like to save this under?");
+            string filename = Console.ReadLine()!.Trim();
+
+            using(StreamWriter writeText = new StreamWriter(filename))
+            {   
+                writeText.WriteLine($"{_workingMemory}"); 
+            }
+        }
+        else if (_userChoice == 3)
+        {
+            //load profile
+            Console.WriteLine("What file would you like to open?");
+            string filename = Console.ReadLine()!.Trim();
+
+            //emptying working memory before the foreach loop.
+            _workingMemory = "";
+            
+            //open a file csv and copy its contents into working memory, replacing previous contents.
+            using(StreamReader readtext = new StreamReader(filename))
+            {
+                string readText = readtext.ReadLine();
+            }
+        }
+        else if (_userChoice == 4)
+        {
+            //report goal progress (record event)
+            //write out list of current goals
+            Console.WriteLine(_workingMemory); //wip: fix _workingMemory formatting.
+
+            //ask user for which goal they would like to report progress in, allow user to report a success in the goal, either once or multiple times.
+            Console.Write("Which goal would you like to report progress in? ");
+            string goalAnswer = Console.ReadLine();
+            int goalTarget = Int32.Parse(goalAnswer);
+
+            //turn goalTarget into the instance of whatever goal
+            string 
+            
+            bool goalComplete = wip.GetComplete();
+
+            //check if complete
+            if (goalComplete == true)
+            {   
+                //if goal is complete, give points
+                int pointValue = wip.GetPoints();
+                _profile[1] = _profile[1] + pointValue;
+            }
+        }
+        else if (_userChoice == 5)
+        {
+            //view goals
+            Console.WriteLine(_workingMemory);//wip: fix _workingMemory formatting.
+        }
+        else if (_userChoice == 6)
+        {
+            //experience progress
+            //pull the current level and exp
+            string rawLevel = _profile[0];
+            int level = Int32.Parse(rawLevel);
+            string rawExperience = _profile[1];
+            int experience = Int32.Parse(rawExperience);
+
+            game.CalculateLevel(experience, level);
+                
+        }
+        else if (_userChoice == 7)
+        {
+            //notifications (view)
+            List<string> notifications = game.GetNotifications();
+            int notificationCount = notifications.Count();                
+            Console.WriteLine($"You have {notificationCount} notifications.");
+            Console.Write("How many notifications would you like to view? ");
+            string rawAmount = Console.ReadLine();
+            int parsedAmount = Int32.Parse(rawAmount);
+            game.DisplayNotification(parsedAmount);
+        }
+        else if (_userChoice == 8)
+        {
+            //quit
+            //break is set in program, checking for 8 or 0
+        }
+        else if (_userChoice == 0)
+        {
+            Console.WriteLine("Unexpected error. Not sure how you did that.");
+        }
+    }
+
     public int GetUserChoice()
     {
         return _userChoice;
@@ -96,6 +254,4 @@ class Menu
     {
         return _menuOptions;
     }
-
-    
 }

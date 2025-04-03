@@ -89,4 +89,9 @@ class Game
         Console.WriteLine($"You have gone through {amount} notifications.");
         Console.WriteLine($"You have {counter} notifications left in your inbox.");
     }
+
+    public List<string> GetNotifications()
+    {
+        return _notifications;
+    }
 }

@@ -6,14 +6,11 @@ public abstract class Goal
 {
     private string _title;
     private string _description;
-    private int _points;
+    protected int _points;
     protected bool _complete;
 
-    public Goal(string title, string description, int points) //yonder constructor is a setter
+    public Goal() //yonder constructor is a setter
     {
-        _title = title;
-        _description = description;
-        _points = points; 
         _complete = false;
     }
         
@@ -29,10 +26,28 @@ public abstract class Goal
     {
         return _points;
     }
-
-    public abstract void RecordEvent();
-    public virtual bool IsComplete()
+    public virtual bool GetComplete()
     {
         return _complete;
+    }
+    public void SetComplete()
+    {
+        _complete = true;
+    }
+
+    public virtual void CreateGoal()
+    {
+        Console.Write("What is the name of your goal? ");
+        _title = Console.ReadLine();
+
+        Console.Write("Please provide a short description of your goal: ");
+        _description = Console.ReadLine();
+
+        DeterminePoints(); //each child determines points in its own way.
+    }
+    public abstract void DeterminePoints();
+    public virtual void ReportProgress()
+    {
+
     }
 }
